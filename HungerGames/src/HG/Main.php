@@ -121,14 +121,14 @@ class Main extends PluginBase implements Listener
 				unset($this->players[$sender->getName()]);
 				$sender->setLevel($this->signlevel);
 				$sender->teleport($this->signlevel->getSpawnLocation());
-				$sender->sendMessage("[SurvivalGame] Back to lobby...");
-				$this->sendToAll("[SurvivalGame] Player ".$sender->getName()." exit from game");
+				$sender->sendMessage(TextFormat::GREEN."Teleporting to lobby...");
+				$this->sendToAll(TextFormat::RED."Player ".$sender->getName()." left the match.");
 				$this->changeStatusSign();
 				if($this->gameStatus==1 && count($this->players)<2)
 				{
 					$this->gameStatus=0;
 					$this->lastTime=0;
-					$this->sendToAll("[HG] Less than 2 players,stopped countdown");
+					$this->sendToAll("There aren't enough players. Countdown was stopped.");
 					/*foreach($this->players as $pl)
 					{
 						$p=$this->getServer()->getPlayer($pl["id"]);
@@ -140,7 +140,7 @@ class Main extends PluginBase implements Listener
 			}
 			else
 			{
-				$sender->sendMessage("[HG] You are not in the game.");
+				$sender->sendMessage(TextFormat::RED . "You are not in a match.");
 			}
 			return true;
 		}
@@ -150,13 +150,13 @@ class Main extends PluginBase implements Listener
 		case "set":
 			if($this->config->exists("lastpos"))
 			{
-				$sender->sendMessage("[HG] The game was set before,please use /fsg remove and try again.");
+				$sender->sendMessage("The game was set before. Please use /fsg remove and try again.");
 			}
 			else
 			{
 				$name=$sender->getName();
 				$this->SetStatus[$name]=0;
-				$sender->sendMessage("[HG] Please tap the status sign.");
+				$sender->sendMessage("Please tap the status sign.");
 			}
 			break;
 		case "remove":
@@ -172,10 +172,10 @@ class Main extends PluginBase implements Listener
 			$this->config->remove("lastpos");
 			$this->config->save();
 			unset($this->sign,$this->pos1,$this->pos2,$this->pos3,$this->pos4,$this->pos5,$this->pos6,$this->pos7,$this->pos8,$this->lastpos);
-			$sender->sendMessage("[HG] succeeded in deleting game settings");
+			$sender->sendMessage(TextFormat::GREEN . "Game settings successfully deleted.");
 			break;
 		case "start":
-			$this->sendToAll("[HG] Forced Match Start");
+			$this->sendToAll("Match has been started forcefully.");
 			$this->gameStatus=1;
 			$this->lastTime=5;
 			break;
@@ -321,8 +321,8 @@ class Main extends PluginBase implements Listener
 			break;
 		default:
 			$event->setCancelled();
-			$event->getPlayer()->sendMessage("[HG] You Are Now IN The Game You Cannot Use Commands Besides...");
-			$event->getPlayer()->sendMessage("[HG] /kill or /lobby to exit game");
+			$event->getPlayer()->sendMessage("You are not allowed to use commands besides");
+			$event->getPlayer()->sendMessage("/kill and /lobby.");
 			break;
 		}
 		unset($event);
@@ -344,7 +344,7 @@ class Main extends PluginBase implements Listener
 		    	if($this->PlayerIsInGame($player->getName()) && !$this->PlayerIsInGame($killer->getName()) && !$killer->isOp())
 		    	{
 		    		$event->setCancelled();
-		    		$killer->sendMessage("[HG]Cannot Attack Yet ");
+		    		$killer->sendMessage("You cannot attack yet.");
 		    		$killer->kill();
 		    	}
 		    }
@@ -367,9 +367,9 @@ class Main extends PluginBase implements Listener
 				unset($this->players[$event->getEntity()->getName()]);
 				if(count($this->players)>1)
 				{
-					$this->sendToAll("[HG] Player {$event->getEntity()->getName()} died");
-				$this->sendToAll("[HG] Players :".count($this->players));
-					$this->sendToAll("[HG] Time Left :".$this->lastTime." seconds");
+					$this->sendToAll(" {$event->getEntity()->getName()} died.");
+				$this->sendToAll("Players: ".count($this->players));
+					$this->sendToAll("Time remaining: ".$this->lastTime." seconds.");
 				}
 				$this->changeStatusSign();
 			}
@@ -437,23 +437,23 @@ class Main extends PluginBase implements Listener
 			case 10:
 			//case 20:
 			case 30:
-				$this->sendToAll("[HG] The game will start in ".$this->lastTime." seconds");
+				$this->sendToAll(TextFormat::YELLOW."The match will start in ".$this->lastTime." seconds.");
 				break;
 			case 60:
-				$this->sendToAll(" [HG] The game will start in one minute");
+				$this->sendToAll(TextFormat::YELLOW."The match will start in 1:00.");
 				break;
 			case 90:
-				$this->sendToAll("[HG] The game will start in one minute thirty seconds");
+				$this->sendToAll(TextFormat::YELLOW."The match will start in 1:30.");
 				break;
 			case 120:
-				$this->sendToAll("[HG] The game will start in two minutes");
+				$this->sendToAll(TextFormat::YELLOW."The match will start in 2:00.");
 				break;
 			case 150:
-				$this->sendToAll("[HG] The game will start in two minutes thirty seconds");
+				$this->sendToAll(TextFormat::YELLOW."The match will start in 2:30.");
 				break;
 			case 0:
 				$this->gameStatus=2;
-				$this->sendToAll("[HG] THE GAMES HAVE BEGUN");
+				$this->sendToAll("The match has started.");
 				$this->lastTime=$this->godTime;
 				$this->resetChest();
 				foreach($this->players as $key=>$val)
@@ -482,11 +482,11 @@ class Main extends PluginBase implements Listener
 		{
 			if(count($this->players)==1)
 			{
-				$this->sendToAll(" [HG] Congratulations! You have won the game");
+				$this->sendToAll(TextFormat::GREEN."Congratulations! You have won the game.");
 				foreach($this->players as &$pl)
 				{
 					$p=$this->getServer()->getPlayer($pl["id"]);
-					Server::getInstance()->broadcastMessage("[HG] Congratulates to " .$p->getName(). " for whom that has won the game");
+					Server::getInstance()->broadcastMessage(TextFormat::GREEN."" .$p->getName(). " won an HG match!");
 					$p->setLevel($this->signlevel);
 					$p->getInventory()->clearAll();
 					$p->setMaxHealth(25);
@@ -502,7 +502,7 @@ class Main extends PluginBase implements Listener
 			}
 			else if(count($this->players)==0)
 			{
-				Server::getInstance()->broadcastMessage("[HG] The Games Have Ended");
+				Server::getInstance()->broadcastMessage("The match has ended.");
 				$this->gameStatus=0;
 				$this->lastTime=0;
 				$this->clearChest();
@@ -521,10 +521,10 @@ class Main extends PluginBase implements Listener
 			case 4:
 			case 5:
 			case 10:
-				$this->sendToAll("[HG] " .$this->lastTime. " seconds left for the death match");
+				$this->sendToAll(TextFormat::YELLOW."" .$this->lastTime. " seconds remaining before deathmatch.");
 				break;
 			case 0:
-				$this->sendToAll("[HG] the death match begins");
+				$this->sendToAll(TextFormat::YELLOW."The deathmatch has started. May the best one win.");
 				foreach($this->players as $pl)
 				{
 					$p=$this->getServer()->getPlayer($pl["id"]);
@@ -550,11 +550,11 @@ class Main extends PluginBase implements Listener
 			case 10:
 			//case 20:
 			case 30:
-				$this->sendToAll("[HG] there are " .$this->lastTime. " seconds to the end of the game");
+				$this->sendToAll("The match will end in " .$this->lastTime. " seconds.");
 				break;
 			case 0:
-				$this->sendToAll("[HG] games ended");
-				Server::getInstance()->broadcastMessage("[HG] Games Have ended");
+				$this->sendToAll("The match has ended.");
+				Server::getInstance()->broadcastMessage("The match has ended.");
 				foreach($this->players as $pl)
 				{
 					$p=$this->getServer()->getPlayer($pl["id"]);
@@ -612,19 +612,19 @@ class Main extends PluginBase implements Listener
 			switch($this->gameStatus)
 			{
 			case 0:
-				$sign->setText("HG","Tap to join","player amount :".count($this->players),"");
+				$sign->setText("[HG]","[Join]","Players: ".count($this->players),"");
 				break;
 			case 1:
-				$sign->setText("HG","Tap to join","player amount :".count($this->players),"time left :".$this->lastTime."sec");
+				$sign->setText("[HG]","[Join]","Players: ".count($this->players),"Time left: ".$this->lastTime." sec.");
 				break;
 			case 2:
-				$sign->setText("HG","starting right now","player amount :".count($this->players),"you are prohibited :".$this->lastTime."sec");
+				$sign->setText("[HG]","[Grace]","Players: ".count($this->players),"Time left: ".$this->lastTime." sec.");
 				break;
 			case 3:
-				$sign->setText("HG","running","alive :".count($this->players)."/{$this->all}","time to the death match :".$this->lastTime."sec");
+				$sign->setText("[HG]","[Running]","Players: ".count($this->players)."/{$this->all}","Time before DM:".$this->lastTime."sec");
 				break;
 			case 4:
-				$sign->setText("HG","DM","players left :".count($this->players)."/{$this->all}","time left :".$this->lastTime."sec");
+				$sign->setText("[HG]","[DM]","Players: ".count($this->players)."/{$this->all}","Ends in:".$this->lastTime."sec");
 				break;
 			}
 		}
@@ -653,8 +653,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("sign",$this->sign);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN."[HG] SIGN for condition has been created");
-				$player->sendMessage(TextFormat::GREEN." [HG] please click on the 1st spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Sign for condition has been created.");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 1st spawnpoint.");
 				$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
 				$this->sign=new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
 				$this->changeStatusSign();
@@ -668,8 +668,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos1",$this->pos1);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN." [HG] Spawnpoint 1 created");
-				$player->sendMessage(TextFormat::GREEN."[HG] Please click.on the 2nd spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 1 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 2nd spawnpoint.");
 				$this->pos1=new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
 				break;
 			case 2:
@@ -681,8 +681,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos2",$this->pos2);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN." [HG] spawnpoint 2 created");
-				$player->sendMessage(TextFormat::GREEN." [HG] Please click on the 3rd spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 2 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 3rd spawnpoint.");
 				$this->pos2=new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
 				break;	
 			case 3:
@@ -694,8 +694,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos3",$this->pos3);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN."[HG] spawnpoint 3 created");
-				$player->sendMessage(TextFormat::GREEN." [HG] Please click on the 4th spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 3 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 4th spawnpoint");
 				$this->pos3=new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
 				break;	
 			case 4:
@@ -707,8 +707,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos4",$this->pos4);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN."[HG] spawnpoint 4 created");
-				$player->sendMessage(TextFormat::GREEN." [HG] please click on the 5th spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 4 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 5th spawnpoint.");
 				$this->pos4=new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
 				break;
 			case 5:
@@ -720,8 +720,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos5",$this->pos5);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN." [HG] spawnpoint 5 created");
-				$player->sendMessage(TextFormat::GREEN."[Hunger Game] Please click on the 6th spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 5 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 6th spawnpoint.");
 				$this->pos5=new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
 				break;
 			case 6:
@@ -733,8 +733,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos6",$this->pos6);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN."[HG] spawnpoint 6 created");
-				$player->sendMessage(TextFormat::GREEN."[HG] Please click on the 7th spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 6 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 7th spawnpoint.");
 				$this->pos6=new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
 				break;
 			case 7:
@@ -746,8 +746,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos7",$this->pos7);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN."[HG] spawnpoint 7 created");
-				$player->sendMessage(TextFormat::GREEN."[HG] Please click on the 8th spawnpoint");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 7 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 8th spawnpoint.");
 				$this->pos7=new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
 				break;	
 			case 8:
@@ -759,8 +759,8 @@ class Main extends PluginBase implements Listener
 				$this->config->set("pos8",$this->pos8);
 				$this->config->save();
 				$this->SetStatus[$username]++;
-				$player->sendMessage(TextFormat::GREEN."[HG] spawnpoint 8 created");
-				$player->sendMessage(TextFormat::GREEN."[HG] Please click to choose a destination for the death match");
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 8 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click to choose a spawnpoint for the deathmatch.");
 				$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
 				break;
 			case 9:
@@ -773,8 +773,8 @@ class Main extends PluginBase implements Listener
 				$this->config->save();
 				$this->lastpos=new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
 				unset($this->SetStatus[$username]);
-				$player->sendMessage(TextFormat::GREEN."[HG] death match destination created");
-				$player->sendMessage(TextFormat::GREEN."[HG] All settings completed and you can start a game now");
+				$player->sendMessage(TextFormat::GREEN."Deathmatch spawnpoint created!");
+				$player->sendMessage(TextFormat::GREEN."All settings completed and you can start a game now.");
 				$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);					
 			}
 		}
@@ -785,12 +785,12 @@ class Main extends PluginBase implements Listener
 			{
 				if(!$this->config->exists("lastpos"))
 				{
-					$event->getPlayer()->sendMessage("[HG] You can not join the game for the game hasn't been set yet");
+					$event->getPlayer()->sendMessage("The game hasn't been set yet.");
 					return;
 				}
 				if(!$event->getPlayer()->hasPermission("FSurvivalGame.touch.startgame"))
 				{
-					$event->getPlayer()->sendMessage("[HG] You don't have permission to join this game");
+					$event->getPlayer()->sendMessage("You don't have permission to join this game.");
 					return;
 				}
 				if(!$event->getPlayer()->isOp())
@@ -800,7 +800,7 @@ class Main extends PluginBase implements Listener
     				{
     					if($inv->getItem($i)->getID()!=0)
     					{
-    						$event->getPlayer()->sendMessage("[HG] take the stuff out of ur inv to join match");
+    						$event->getPlayer()->sendMessage("Remove all items from your inventory to join match.");
     						return;
     					}
     				}
@@ -808,7 +808,7 @@ class Main extends PluginBase implements Listener
     				{
     					if($i->getID()!=0)
     					{
-    						$event->getPlayer()->sendMessage("[HG] Take your armor off please");
+    						$event->getPlayer()->sendMessage("Please take your armor off.");
     						return;
     					}
     				}
@@ -819,33 +819,33 @@ class Main extends PluginBase implements Listener
 					{
 						if(count($this->players)>=6)
 						{
-							$event->getPlayer()->sendMessage("[HG] the map is full");
+							$event->getPlayer()->sendMessage("The match is full.");
 							return;
 						}
-						$this->sendToAll("[HG]Player " .$event->getPlayer()->getName(). " joined the game");
+						$this->sendToAll("" .$event->getPlayer()->getName(). " joined the match.");
 						$this->players[$event->getPlayer()->getName()]=array("id"=>$event->getPlayer()->getName());
-						$event->getPlayer()->sendMessage("[HG] joined the game successfully");
+						$event->getPlayer()->sendMessage("You have joined the match!");
 						if($this->gameStatus==0 && count($this->players)>=2)
 						{
 							$this->gameStatus=1;
 							$this->lastTime=$this->waitTime;
-							$this->sendToAll("[HG] The game will countdown when a low amount of players are in");
+							$this->sendToAll("The game will countdown when a low amount of players are in");
 						}
 						if(count($this->players)==8 && $this->gameStatus==1 && $this->lastTime>5)
 						{
-							$this->sendToAll("[HG] Already full,starting");
+							$this->sendToAll("The match is already full. Starting the match.");
 							$this->lastTime=5;
 						}
 						$this->changeStatusSign();
 					}
 					else
 					{
-						$event->getPlayer()->sendMessage("[HG] You are already in the game do /lobby to leave");
+						$event->getPlayer()->sendMessage("You are already in the game. Do /lobby to leave.");
 					}
 				}
 				else
 				{
-					$event->getPlayer()->sendMessage("[HG] Can not join the game for it has already started");
+					$event->getPlayer()->sendMessage("The match has already started.");
 				}
 			}
 		}
@@ -887,13 +887,13 @@ class Main extends PluginBase implements Listener
 		{	
 			unset($this->players[$event->getPlayer()->getName()]);
 			$this->ClearInv($event->getPlayer());
-			$this->sendToAll("[HG] Player".$event->getPlayer()->getName()."has left the game");
+			$this->sendToAll("".$event->getPlayer()->getName()." left the match.");
 			$this->changeStatusSign();
 			if($this->gameStatus==1 && count($this->players)<2)
 			{
 				$this->gameStatus=0;
 				$this->lastTime=0;
-				$this->sendToAll("[HG] not enough players countdown stopped");
+				$this->sendToAll("There aren't enough players. Countdown has stopped.");
 				/*foreach($this->players as $pl)
 				{
 					$p=$this->getServer()->getPlayer($pl["id"]);
