@@ -1,0 +1,19 @@
+name: ResetChest
+main: ResetChest\Main
+version: "1.0"
+author: FENGberd
+api: [1.0.0]
+load: POSTWORLD
+commands:
+ cr:
+  permission: FChestReset.command
+  description: Main command
+  usage: /cr <add|remove|reload|reset>
+permissions:
+ FChestReset.*:
+  default: op
+  description: Main permission
+  children:
+   FChestReset.command.*:
+    default: op
+    description: use commands
