@@ -69,21 +69,21 @@ class Main extends PluginBase implements CommandExecutor, Listener
         	}
         	$this->chest=$this->config->get("chest");
         	$this->set=array();
-    		$sender->sendMessage("[ResetChest] Reload successful");
+    		$sender->sendMessage("Reload successful!");
     		break;
     	case "reset":
     		$this->ResetChest();
-    		$sender->sendMessage("[ResetChest]  Chest Refilled");
+    		$sender->sendMessage("Chest has been refilled!");
     		break;
     	case "clear":
     		$this->ClearChest();
-    		$sender->sendMessage("[ResetChest] Chests has been cleared");
+    		$sender->sendMessage("Chests have been cleared.");
     		break;
     	case "add":
     	case "remove":
-    		if(!$sender instanceof Player){$sender->sendMessage("[ResetChest]Cant Break Tahat");break;};
+    		if(!$sender instanceof Player){$sender->sendMessage("Don't break it!");break;};
     		$this->set[$sender->getName()] = $args[0];
-            $sender->sendMessage("[ResetChest] Click the chest to confirm");
+            $sender->sendMessage("Click the chest to confirm.");
     		break;
     	default:
     		unset($sender,$cmd,$label,$args);
@@ -106,7 +106,7 @@ class Main extends PluginBase implements CommandExecutor, Listener
         {
         	if($block->getId()!=54)
         	{
-        		$event->getPlayer()->sendMessage("[ResetChest] Please tap a chest");
+        		$event->getPlayer()->sendMessage("Please tap a chest.");
             	unset($event,$block,$key,$val);
             	return;
         	}
@@ -119,7 +119,7 @@ class Main extends PluginBase implements CommandExecutor, Listener
             	{
             		if($val["x"]==$block->getX() && $val["y"]==$block->getY() && $val["z"]==$block->getZ() && $val["level"]==$block->getLevel()->getFolderName())
             		{
-            			$event->getPlayer()->sendMessage("[ResetChest] This chest was in reset list");
+            			$event->getPlayer()->sendMessage("This chest is already added.");
             			unset($event,$block,$key,$val);
             			return;
             		}
@@ -131,16 +131,16 @@ class Main extends PluginBase implements CommandExecutor, Listener
             	$tmp["level"]=$block->getLevel()->getFolderName();
                 $this->chest[]=$tmp;
                 unset($tmp,$key,$val);
-                $event->getPlayer()->sendMessage("[ResetChest] Add to reset list....");
+                $event->getPlayer()->sendMessage("Adding to the reset list...");
                 break;
             case "remove":
-            	$msg="[ResetChest] This chest isn't in the reset list";
+            	$msg="This chest isn't in the reset list.";
                 foreach($this->chest as $key=>$val)
             	{
             		if($val["x"]==$block->getX() && $val["y"]==$block->getY() && $val["z"]==$block->getZ() && $val["level"]==$block->getLevel()->getFolderName())
             		{
             			array_splice($this->chest,$key,1);
-            			$msg="[ResetChest] Remove from reset list...";
+            			$msg="Removing from the reset list...";
             			break;
             		}
             	}
@@ -162,12 +162,12 @@ class Main extends PluginBase implements CommandExecutor, Listener
         	{
         		if(!$event->getPlayer()->isOp())
         		{
-        			$event->getPlayer()->sendMessage("[ResetChest] You can't break this chest");
+        			$event->getPlayer()->sendMessage("You can't break this chest.");
         			$event->setCancelled();
         			break;
         		}
             	array_splice($this->chest,$key,1);
-            	$event->getPlayer()->sendMessage("[ResetChest] Remove from reset list...");
+            	$event->getPlayer()->sendMessage("Removing from reset list...");
             	break;
             }
         }
