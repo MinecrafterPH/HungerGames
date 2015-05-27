@@ -1,3 +1,4 @@
-# HungerGames-fixed
-a more usable version of FsurvivalGames (english)
-#FChestReset Is Needed For This Plugin To Work
+# Hunger Games
+###### A PocketMine-MP that adds Hunger Games to your server.
+- ***Dependency plugins:*** *ChestRefill*<br>
+- ***You can contribute by forking the repo and making a pull request.***<br>
