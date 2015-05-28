@@ -434,10 +434,13 @@ class Main extends PluginBase implements Listener
 			case 3:
 			case 4:
 			case 5:
+				$this->sendToAll(TextFormat::YELLOW."Starting in ".$this->lastTime.".");
+				break;	
 			case 10:
-			//case 20:
+				$this->sendToAll(TextFormat::YELLOW."The match will start in 0:10.");
+				break;
 			case 30:
-				$this->sendToAll(TextFormat::YELLOW."The match will start in ".$this->lastTime." seconds.");
+				$this->sendToAll(TextFormat::YELLOW."The match will start in 0:30.");
 				break;
 			case 60:
 				$this->sendToAll(TextFormat::YELLOW."The match will start in 1:00.");
@@ -453,7 +456,7 @@ class Main extends PluginBase implements Listener
 				break;
 			case 0:
 				$this->gameStatus=2;
-				$this->sendToAll("The match has started.");
+				$this->sendToAll(TextFormat::YELLOW."The match has started.");
 				$this->lastTime=$this->godTime;
 				$this->resetChest();
 				foreach($this->players as $key=>$val)
@@ -520,8 +523,10 @@ class Main extends PluginBase implements Listener
 			case 3:
 			case 4:
 			case 5:
+				$this->sendToAll(TextFormat::YELLOW."Deathmatch will start in " .$this->lastTime. ".");
+				break;	
 			case 10:
-				$this->sendToAll(TextFormat::YELLOW."" .$this->lastTime. " seconds remaining before deathmatch.");
+				$this->sendToAll(TextFormat::YELLOW."Deathmatch will start in 0:10.");
 				break;
 			case 0:
 				$this->sendToAll(TextFormat::YELLOW."The deathmatch has started. May the best one win.");
@@ -547,10 +552,14 @@ class Main extends PluginBase implements Listener
 			case 3:
 			case 4:
 			case 5:
+				$this->sendToAll("Ending in " .$this->lastTime. ".");
+				break;	
 			case 10:
+				$this->sendToAll("The match will end in 0:30.");
+				break;
 			//case 20:
 			case 30:
-				$this->sendToAll("The match will end in " .$this->lastTime. " seconds.");
+				$this->sendToAll("The match will end in 0:30.");
 				break;
 			case 0:
 				$this->sendToAll("The match has ended.");
