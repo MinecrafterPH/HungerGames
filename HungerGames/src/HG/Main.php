@@ -177,8 +177,8 @@ class Main extends PluginBase implements Listener
 			$this->config->remove("pos10");
 			$this->config->remove("lastpos");
 			$this->config->save();
-			unset($this->sign,$this->pos1,$this->pos2,$this->pos3,$this->pos4,$this->pos5,$this->pos6,$this->pos7,$this->pos8,$this->lastpos);
-			$sender->sendMessage(TextFormat::GREEN . "Game settings successfully deleted.");
+			unset($this->sign,$this->pos1,$this->pos2,$this->pos3,$this->pos4,$this->pos5,$this->pos6,$this->pos7,$this->pos8,$this->pos9,$this->pos10,$this->lastpos);
+			$sender->sendMessage(TextFormat::GREEN . "Game settings successfully removed.");
 			break;
 		case "start":
 			$this->sendToAll("Match has been started forcefully.");
