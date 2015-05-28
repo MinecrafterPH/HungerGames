@@ -63,6 +63,8 @@ class Main extends PluginBase implements Listener
 			$this->pos6=$this->config->get("pos6");
 			$this->pos7=$this->config->get("pos7");
 			$this->pos8=$this->config->get("pos8");
+			$this->pos9=$this->config->get("pos9");
+			$this->pos10=$this->config->get("pos10");
 			$this->lastpos=$this->config->get("lastpos");
 			$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
 			$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
@@ -75,6 +77,8 @@ class Main extends PluginBase implements Listener
 			$this->pos6=new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
 			$this->pos7=new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
 			$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
+			$this->pos9=new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
+			$this->pos10=new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);			
 			$this->lastpos=new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
 		}
 		if(!$this->config->exists("endTime"))
@@ -169,6 +173,8 @@ class Main extends PluginBase implements Listener
 			$this->config->remove("pos6");
 			$this->config->remove("pos7");
 			$this->config->remove("pos8");
+			$this->config->remove("pos9");
+			$this->config->remove("pos10");
 			$this->config->remove("lastpos");
 			$this->config->save();
 			unset($this->sign,$this->pos1,$this->pos2,$this->pos3,$this->pos4,$this->pos5,$this->pos6,$this->pos7,$this->pos8,$this->lastpos);
@@ -194,6 +200,8 @@ class Main extends PluginBase implements Listener
 				$this->pos6=$this->config->get("pos6");
 				$this->pos7=$this->config->get("pos7");
 				$this->pos8=$this->config->get("pos8");
+				$this->pos9=$this->config->get("pos9");
+				$this->pos10=$this->config->get("pos10");
 				$this->lastpos=$this->config->get("lastpos");
 				$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
 				$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
@@ -206,6 +214,8 @@ class Main extends PluginBase implements Listener
 				$this->pos6=new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
 				$this->pos7=new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
 				$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
+				$this->pos9=new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
+				$this->pos10=new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);	
 				$this->lastpos=new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
 			}
 			if(!$this->config->exists("endTime"))
@@ -769,10 +779,36 @@ class Main extends PluginBase implements Listener
 				$this->config->save();
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 8 created!");
-				$player->sendMessage(TextFormat::GREEN."Please click to choose a spawnpoint for the deathmatch.");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 9th spawnpoint.");
 				$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
 				break;
 			case 9:
+				$this->pos9=array(
+					"x" =>$block->x,
+					"y" =>$block->y,
+					"z" =>$block->z,
+					"level" =>$levelname);
+				$this->config->set("pos9",$this->pos9);
+				$this->config->save();
+				$this->SetStatus[$username]++;
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 9 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the 10th spawnpoint.");
+				$this->pos9=new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
+				break;
+			case 10:
+				$this->pos10=array(
+					"x" =>$block->x,
+					"y" =>$block->y,
+					"z" =>$block->z,
+					"level" =>$levelname);
+				$this->config->set("pos10",$this->pos10);
+				$this->config->save();
+				$this->SetStatus[$username]++;
+				$player->sendMessage(TextFormat::GREEN."Spawnpoint 10 created!");
+				$player->sendMessage(TextFormat::GREEN."Please click on the spawnpoint for deathmatch.");
+				$this->pos10=new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
+				break;	
+			case 11:
 				$this->lastpos=array(
 					"x" =>$block->x,
 					"y" =>$block->y,
