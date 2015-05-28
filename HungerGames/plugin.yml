@@ -1,0 +1,33 @@
+name: HungerGames
+main: HG\Main
+version: "1.2"
+api: [1.0.0]
+load: POSTWORLD
+author: a k i d
+commands:
+ hg:
+  permission: hg.command.hg
+  description: 
+  usage: /hg <set|remove>
+ lobby:
+  permission: hg.command.lobby
+  description: Return to lobby.
+  usage: /lobby
+permissions:
+ hg.*:
+  description: The main permission of HG.
+  default: op
+  children:
+   hg.command.*:
+    description: Use commands in HG.
+    default: op
+    children:
+     hg.command.lobby:
+      description: Return to lobby.
+      default: true
+     hg.command.fsg:
+      description: Set the game.
+      default: op
+   hg.touch.startgame:
+    description: Click the sign and join the game
+    default: true
