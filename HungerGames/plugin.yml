@@ -28,6 +28,9 @@ permissions:
      hg.command.fsg:
       description: Set the game.
       default: op
+     hg.command.stats:
+      description: Check your stats.
+      default: true 
    hg.touch.startgame:
     description: Click the sign and join the game
     default: true
