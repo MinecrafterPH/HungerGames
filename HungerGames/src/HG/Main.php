@@ -198,7 +198,7 @@ class Main extends PluginBase implements Listener
 				return true;
                                 }
                         }else{
-                                $sender->sendMessage("You haven't the permission to run this command.");
+                                $sender->sendMessage("You dont have permissions to run this command.");
 				return true; }
 				break;
 		case "set":
