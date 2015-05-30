@@ -51,7 +51,8 @@ class Main extends PluginBase implements Listener
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new CallbackTask([$this,"gameTimber"]),20);
 		@mkdir($this->getDataFolder(), 0777, true);
-		$this->config=new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
+		$this->points = new Config($this->getDataFolder()."points.yml", Config::YAML);
+		$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 		if($this->config->exists("lastpos"))
 		{
 			$this->sign=$this->config->get("sign");
@@ -145,7 +146,7 @@ class Main extends PluginBase implements Listener
 		{
 			if($this->gameStatus>=2)
 			{
-				$sender->sendMessage("[HG] The Game Has Started. You Cannot Go Back To The Lobby.");
+				$sender->sendMessage("The game has already started. You cannot go back to the lobby.");
 				return;
 			}
 			if(isset($this->players[$sender->getName()]))
@@ -179,6 +180,27 @@ class Main extends PluginBase implements Listener
 		if(!isset($args[0])){unset($sender,$cmd,$label,$args);return false;};
 		switch ($args[0])
 		{
+		case "stats":
+			if($sender->hasPermission("hg.command.stat") or $sender->hasPermission("hg.command") or $sender->hasPermission("hg")){
+                                if(!(isset($args[1]))){
+                                $player = $sender->getName();
+		                $deaths = $this->points->get($player)[0];
+				$kills = $this->points->get($player)[1];
+				$points = $this->points->get($player)[2];
+				$sender->sendMessage(TextFormat::RED."You have ".$deaths." deaths and".$kills." kills.");
+				return true;
+                        }else{
+                                $player = $args[1];
+				$deaths = $this->points->get($player)[0];
+				$kills = $this->points->get($player)[1];
+				$points = $this->points->get($player)[2];
+				$sender->sendMessage(TextFormat::RED.".$player." has ".$deaths." deaths and ".$kills." kills.");
+				return true;
+                                }
+                        }else{
+                                $sender->sendMessage("You haven't the permission to run this command.");
+				return true; }
+				break;
 		case "set":
 			if($this->config->exists("lastpos"))
 			{
