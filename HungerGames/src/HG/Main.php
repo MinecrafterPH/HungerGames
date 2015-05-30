@@ -181,7 +181,7 @@ class Main extends PluginBase implements Listener
 		switch ($args[0])
 		{
 		case "stats":
-			if($sender->hasPermission("hg.command.stat") or $sender->hasPermission("hg.command") or $sender->hasPermission("hg")){
+			if($sender->hasPermission("hg.command.stats") or $sender->hasPermission("hg.command") or $sender->hasPermission("hg")){
                                 if(!(isset($args[1]))){
                                 $player = $sender->getName();
 		                $deaths = $this->points->get($player)[0];
