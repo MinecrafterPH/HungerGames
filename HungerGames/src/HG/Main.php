@@ -478,7 +478,7 @@ class Main extends PluginBase implements Listener
 			
 		}
 	}
-	public function onPlayerDie(PlayerDeathEvent $event){
+/*  public function onPlayerDie(PlayerDeathEvent $event){
 	          $p = $event->getPlayer();
   $causeId = $p->getLastDamageCause()->getCause();
   switch($causeId){
@@ -514,7 +514,7 @@ class Main extends PluginBase implements Listener
 	if($cause instanceof EntityDamageByEntityEvent){
 	$e = $cause->getDamager();
 		if($e instanceof Living){
-			$text = "You were shot by $params[]!";
+			$text = "You were shot by ".$params[]."!";
 			$params[] = $e->getName();
 			break;
 		        }else{
@@ -525,7 +525,7 @@ class Main extends PluginBase implements Listener
     case EntityDamageEvent::CAUSE_ENTITY_ATTACK:
         if($cause instanceof EntityDamageByEntityEvent){
                 if($e instanceof Living){
-                        $text = "You were slain by $params[]!";
+                        $text = "You were slain by ".$params[]."!";
                         $param[] = $e->getName();
                         break;
                         }else{
@@ -538,7 +538,7 @@ class Main extends PluginBase implements Listener
 		if($cause instanceof EntityDamageByEntityEvent){
 		$e = $cause->getDamager();
 			if($e instanceof Living){
-				$text = "You were blown up by $params[]!";
+				$text = "You were blown up by ".$params[]."!";
 				$params[] = $e->getName();
 			}
 		}else{
@@ -547,7 +547,7 @@ class Main extends PluginBase implements Listener
 	break;	
   }
   if(isset($text)) $p->sendPopup($text);
-	}
+	} */
 	public function sendToAll($msg){
 		foreach($this->players as $pl)
 		{
