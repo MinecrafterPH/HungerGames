@@ -606,6 +606,7 @@ class Main extends PluginBase implements Listener
 			case 4:
 			case 5:
 				$this->sendToAll(TextFormat::YELLOW."Starting in ".$this->lastTime.".");
+				$this->sendPopup(TextFormat::YELLOW."Starting in ".$this->lastTime.".")
 				break;	
 			case 10:
 				$this->sendToAll(TextFormat::YELLOW."The match will start in 0:10.");
@@ -627,7 +628,8 @@ class Main extends PluginBase implements Listener
 				break;
 			case 0:
 				$this->gameStatus=2;
-				$this->sendToAll(TextFormat::YELLOW."The match has started.");
+				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!");
+				$this->sendTip(TextFormat::GREEN."The match has started.")
 				$this->lastTime=$this->godTime;
 				$this->resetChest();
 				foreach($this->players as $key=>$val)
