@@ -26,7 +26,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use onebone\economyapi\EconomyAPI as EconomyAPI;
-use PocketMoney\PocketMoney as PocketMoney
+use PocketMoney\PocketMoney as PocketMoney;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\block\BlockPlaceEvent;
