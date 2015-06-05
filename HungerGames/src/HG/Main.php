@@ -31,6 +31,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use ResetChest\Main as ResetChest;
+use killrate\Main as KillRate;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 
@@ -50,6 +51,7 @@ class Main extends PluginBase implements Listener
 		}
 		$this->getServer()->getPluginManager()->registerEvents($this,$this);
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new CallbackTask([$this,"gameTimber"]),20);
+		$this->getServer()->getScheduler()->scheduleRepeatingTask(new CallbackTask([$this,"onJoin"]),10);
 		@mkdir($this->getDataFolder(), 0777, true);
 		$this->points = new Config($this->getDataFolder()."points.yml", Config::YAML);
 		$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
@@ -118,25 +120,33 @@ class Main extends PluginBase implements Listener
 		{
 			$this->config->set("gameTime",300);
 		}
+		if(!$this->config->exists("prefix"))
+		{
+			$this->config->set("prefix","[Prefix here]");
+		}
 		if(!$this->config->exists("waitTime"))
 		{
 			$this->config->set("waitTime",180);
 		}
-		if(!$this->config->exists("godTime"))
-		{
-			$this->config->set("godTime",10);
-		}
-		$this->endTime=(int)$this->config->get("endTime");//游戏时间
-		$this->gameTime=(int)$this->config->get("gameTime");//游戏时间
-		$this->waitTime=(int)$this->config->get("waitTime");//等待时间
-		$this->godTime=(int)$this->config->get("godTime");//无敌时间
-		$this->gameStatus=0;//当前状态
-		$this->lastTime=0;//还没开始
-		$this->players=array();//加入游戏的玩家
-		$this->SetStatus=array();//设置状态
-		$this->all=0;//最大玩家数量
+		$this->endTime=(int)$this->config->get("endTime");
+		$this->gameTime=(int)$this->config->get("gameTime");
+		$this->waitTime=(int)$this->config->get("waitTime");
+		$this->prefix=(int)$this->config->get("prefix");
+		$this->gameStatus=0;
+		$this->lastTime=0;
+		$this->players=array();
+		$this->SetStatus=array();
+		$this->all=0;
 		$this->config->save();
-		$this->getServer()->getLogger()->info(TextFormat::BLUE."[HG] LOADED everything!");
+		if(!($this->money = $pm->getPlugin("EconomyAPI"))
+        && !($this->money = $pm->getPlugin("PocketMoney")))			{
+			$this->getServer()->getLogger()->info(TextFormat::RED. "[HG] Please install EconomyAPI or PocketMoney for this to work!");
+		} else {
+			$this->getServer()->getLogger()->info(TextFormat::DARK_BLUE."[HG] Using ".
+											 TextFormat::YELLOW.$this->money->getName()." v".
+											 $this->money->getDescription()->getVersion())." as the money system.";
+											 }
+		$this->getServer()->getLogger()->info(TextFormat::BLUE."[HG] Everything has been loaded!");
 	
 	}
 	
@@ -187,7 +197,7 @@ class Main extends PluginBase implements Listener
 		                $deaths = $this->points->get($player)[0];
 				$kills = $this->points->get($player)[1];
 				$points = $this->points->get($player)[2];
-				$sender->sendMessage(TextFormat::RED."You have ".$deaths." deaths and".$kills." kills.");
+				$sender->sendMessage(TextFormat::RED."You have ".$deaths." deaths and ".$kills." kills.");
 				return true;
                         }else{
                                 $player = $args[1];
@@ -199,8 +209,9 @@ class Main extends PluginBase implements Listener
                                 }
                         }else{
                                 $sender->sendMessage("You dont have permissions to run this command.");
-				return true; }
+				return true; 
 				break;
+                                }
 		case "set":
 			if($this->config->exists("lastpos"))
 			{
@@ -252,7 +263,8 @@ class Main extends PluginBase implements Listener
 		case "reload":
 			unset($this->config);
 			@mkdir($this->getDataFolder(), 0777, true);
-			$this->config=new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
+			$this->points = new Config($this->getDataFolder()."points.yml", Config::YAML);
+			$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 			if($this->config->exists("lastpos"))
 			{
 				$this->sign=$this->config->get("sign");
@@ -318,25 +330,25 @@ class Main extends PluginBase implements Listener
 			{
 				$this->config->set("gameTime",300);
 			}
+			if(!$this->config->exists("prefix"))
+			{
+				$this->config->set("prefix","[Prefix here]");
+			}
 			if(!$this->config->exists("waitTime"))
 			{
 				$this->config->set("waitTime",180);
 			}
-			if(!$this->config->exists("godTime"))
-			{
-				$this->config->set("godTime",15);
-			}
 			$this->endTime=(int)$this->config->get("endTime");//游戏时间
 			$this->gameTime=(int)$this->config->get("gameTime");//游戏时间
 			$this->waitTime=(int)$this->config->get("waitTime");//等待时间
-			$this->godTime=(int)$this->config->get("godTime");//无敌时间
+			$this->prefix=(int)$this->config->get("prefix");//无敌时间
 			$this->gameStatus=0;//当前状态
 			$this->lastTime=0;//还没开始
 			$this->players=array();//加入游戏的玩家
 			$this->SetStatus=array();//设置状态
 			$this->all=0;//最大玩家数量
 			$this->config->save();
-			$sender->sendMessage("[HG] Config reloaded");
+			$sender->sendMessage("Config has been reloaded.");
 			break;
 		default:
 			return false;
@@ -478,7 +490,7 @@ class Main extends PluginBase implements Listener
 			
 		}
 	}
-/*  public function onPlayerDie(PlayerDeathEvent $event){
+/*public function onPlayerDie(PlayerDeathEvent $event){
 	          $p = $event->getPlayer();
   $causeId = $p->getLastDamageCause()->getCause();
   switch($causeId){
@@ -547,11 +559,11 @@ class Main extends PluginBase implements Listener
 	break;	
   }
   if(isset($text)) $p->sendPopup($text);
-	} */
-	public function sendToAll($msg){
+	}*/
+	public function sendTip($msg){
 		foreach($this->players as $pl)
 		{
-			$this->getServer()->getPlayer($pl["id"])->sendMessage($msg);
+			$this->getServer()->getPlayer($pl["id"])->sendTip($msg);
 		}
 		$this->getServer()->getLogger()->info($msg);
 		unset($pl,$msg);
@@ -628,7 +640,8 @@ class Main extends PluginBase implements Listener
 				break;
 			case 0:
 				$this->gameStatus=2;
-				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!");
+				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!".);
+				$this->sendToAll(TextFormat::RED."Warning!".TextFormat::YELLOW."There is no grace period!");
 				$this->sendTip(TextFormat::GREEN."The match has started.")
 				$this->lastTime=$this->godTime;
 				$this->resetChest();
@@ -649,7 +662,7 @@ class Main extends PluginBase implements Listener
 			if($this->lastTime<=0)
 			{
 				$this->gameStatus=3;
-				$this->sendToAll("[HG] ");
+				$this->sendToAll(TextFormat::GREEN."Chests have been refilled!");
 				$this->lastTime=$this->gameTime;
 				$this->resetChest();
 			}
@@ -772,6 +785,20 @@ class Main extends PluginBase implements Listener
 		unset($name,$money);
 	}
 	
+	public function seeMoney($name){
+		return PocketMoney::getInstance()->money($name);
+	}
+	
+	public function grantMoney($name,$money){
+		PocketMoney::getInstance()->grantMoney($name,$money);
+		unset($name,$money);
+	}
+	
+	public function killRate()
+	{
+		KillRate::getInstance()->stats($pl,$money);
+	}
+	
 	public function resetChest()
 	{
 		ResetChest::getInstance()->ResetChest();
@@ -800,7 +827,7 @@ class Main extends PluginBase implements Listener
 				$sign->setText("[HG]","[Join]","Players: ".count($this->players),"Time left: ".$this->lastTime." sec.");
 				break;
 			case 2:
-				$sign->setText("[HG]","[Grace]","Players: ".count($this->players),"Time left: ".$this->lastTime." sec.");
+				$sign->setText("[HG]","[Running]","Players: ".count($this->players),"Time left: ".$this->lastTime." sec.");
 				break;
 			case 3:
 				$sign->setText("[HG]","[Running]","Players: ".count($this->players)."/{$this->all}","Time before DM:".$this->lastTime."sec");
