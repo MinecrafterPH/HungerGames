@@ -205,7 +205,7 @@ class Main extends PluginBase implements Listener
 				$deaths = $this->points->get($player)[0];
 				$kills = $this->points->get($player)[1];
 				$points = $this->points->get($player)[2];
-				$sender->sendMessage(TextFormat::RED.".$player." has ".$deaths." deaths and ".$kills." kills.");
+				$sender->sendMessage(TextFormat::RED.$player." has ".$deaths." deaths and ".$kills." kills.");
 				return true;
                                 }
                         }else{
