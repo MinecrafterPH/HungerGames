@@ -641,7 +641,7 @@ class Main extends PluginBase implements Listener
 				break;
 			case 0:
 				$this->gameStatus=2;
-				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!".);
+				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!");
 				$this->sendToAll(TextFormat::RED."Warning!".TextFormat::YELLOW."There is no grace period!");
 				$this->sendTip(TextFormat::GREEN."The match has started.")
 				$this->lastTime=$this->godTime;
