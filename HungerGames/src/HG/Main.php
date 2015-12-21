@@ -643,7 +643,7 @@ class Main extends PluginBase implements Listener
 				$this->gameStatus=2;
 				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!");
 				$this->sendToAll(TextFormat::RED."Warning!".TextFormat::YELLOW."There is no grace period!");
-				$this->sendTip(TextFormat::GREEN."The match has started.")
+				$this->sendTip(TextFormat::GREEN."The match has started.");
 				$this->lastTime=$this->godTime;
 				$this->resetChest();
 				foreach($this->players as $key=>$val)
