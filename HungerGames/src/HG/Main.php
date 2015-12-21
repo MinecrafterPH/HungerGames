@@ -58,60 +58,60 @@ class Main extends PluginBase implements Listener
 		$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 		if($this->config->exists("lastpos"))
 		{
-			$this->sign=$this->config->get("sign");
-			$this->pos1=$this->config->get("pos1");
-			$this->pos2=$this->config->get("pos2");
-			$this->pos3=$this->config->get("pos3");
-			$this->pos4=$this->config->get("pos4");
-			$this->pos5=$this->config->get("pos5");
-			$this->pos6=$this->config->get("pos6");
-			$this->pos7=$this->config->get("pos7");
-			$this->pos8=$this->config->get("pos8");
-			$this->pos9=$this->config->get("pos9");
-			$this->pos10=$this->config->get("pos10");
-			$this->pos11=$this->config->get("pos11");
-			$this->pos12=$this->config->get("pos12");
-			$this->pos13=$this->config->get("pos13");
-			$this->pos14=$this->config->get("pos14");
-			$this->pos15=$this->config->get("pos15");
-			$this->pos16=$this->config->get("pos16");
-			$this->pos17=$this->config->get("pos17");
-			$this->pos18=$this->config->get("pos18");
-			$this->pos19=$this->config->get("pos19");
-			$this->pos20=$this->config->get("pos20");
-			$this->pos21=$this->config->get("pos21");
-			$this->pos22=$this->config->get("pos22");
-			$this->pos23=$this->config->get("pos23");
-			$this->pos24=$this->config->get("pos24");
-			$this->lastpos=$this->config->get("lastpos");
-			$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
-			$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
-			$this->sign=new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
-			$this->pos1=new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
-			$this->pos2=new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
-			$this->pos3=new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
-			$this->pos4=new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
-			$this->pos5=new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
-			$this->pos6=new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
-			$this->pos7=new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
-			$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
-			$this->pos9=new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
-			$this->pos10=new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
-			$this->pos11=new Vector3($this->pos11["x"]+0.5,$this->pos11["y"],$this->pos11["z"]+0.5);
-                        $this->pos12=new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
-                        $this->pos13=new Vector3($this->pos13["x"]+0.5,$this->pos13["y"],$this->pos13["z"]+0.5);
-                        $this->pos14=new Vector3($this->pos14["x"]+0.5,$this->pos14["y"],$this->pos14["z"]+0.5);
-                        $this->pos15=new Vector3($this->pos15["x"]+0.5,$this->pos15["y"],$this->pos15["z"]+0.5);
-                        $this->pos16=new Vector3($this->pos16["x"]+0.5,$this->pos16["y"],$this->pos16["z"]+0.5);
-                        $this->pos17=new Vector3($this->pos17["x"]+0.5,$this->pos17["y"],$this->pos17["z"]+0.5);
-                        $this->pos18=new Vector3($this->pos18["x"]+0.5,$this->pos18["y"],$this->pos18["z"]+0.5);
-                        $this->pos19=new Vector3($this->pos19["x"]+0.5,$this->pos19["y"],$this->pos19["z"]+0.5);
-                        $this->pos20=new Vector3($this->pos20["x"]+0.5,$this->pos20["y"],$this->pos20["z"]+0.5);
-                        $this->pos21=new Vector3($this->pos21["x"]+0.5,$this->pos21["y"],$this->pos21["z"]+0.5);
-                        $this->pos22=new Vector3($this->pos22["x"]+0.5,$this->pos22["y"],$this->pos22["z"]+0.5);
-                        $this->pos23=new Vector3($this->pos23["x"]+0.5,$this->pos23["y"],$this->pos23["z"]+0.5);
-                        $this->pos24=new Vector3($this->pos24["x"]+0.5,$this->pos24["y"],$this->pos24["z"]+0.5);
-			$this->lastpos=new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
+			$this->sign = $this->config->get("sign");
+			$this->pos1 = $this->config->get("pos1");
+			$this->pos2 = $this->config->get("pos2");
+			$this->pos3 = $this->config->get("pos3");
+			$this->pos4 = $this->config->get("pos4");
+			$this->pos5 = $this->config->get("pos5");
+			$this->pos6 = $this->config->get("pos6");
+			$this->pos7 = $this->config->get("pos7");
+			$this->pos8 = $this->config->get("pos8");
+			$this->pos9 = $this->config->get("pos9");
+			$this->pos10 = $this->config->get("pos10");
+			$this->pos11 = $this->config->get("pos11");
+			$this->pos12 = $this->config->get("pos12");
+			$this->pos13 = $this->config->get("pos13");
+			$this->pos14 = $this->config->get("pos14");
+			$this->pos15 = $this->config->get("pos15");
+			$this->pos16 = $this->config->get("pos16");
+			$this->pos17 = $this->config->get("pos17");
+			$this->pos18 = $this->config->get("pos18");
+			$this->pos19 = $this->config->get("pos19");
+			$this->pos20 = $this->config->get("pos20");
+			$this->pos21 = $this->config->get("pos21");
+			$this->pos22 = $this->config->get("pos22");
+			$this->pos23 = $this->config->get("pos23");
+			$this->pos24 = $this->config->get("pos24");
+			$this->lastpos = $this->config->get("lastpos");
+			$this->level = $this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
+			$this->signlevel = $this->getServer()->getLevelByName($this->config->get("sign")["level"]);
+			$this->sign = new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
+			$this->pos1 = new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
+			$this->pos2 = new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
+			$this->pos3 = new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
+			$this->pos4 = new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
+			$this->pos5 = new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
+			$this->pos6 = new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
+			$this->pos7 = new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
+			$this->pos8 = new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
+			$this->pos9 = new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
+			$this->pos10 = new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
+			$this->pos11 = new Vector3($this->pos11["x"]+0.5,$this->pos11["y"],$this->pos11["z"]+0.5);
+                        $this->pos12 = new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
+                        $this->pos13 = new Vector3($this->pos13["x"]+0.5,$this->pos13["y"],$this->pos13["z"]+0.5);
+                        $this->pos14 = new Vector3($this->pos14["x"]+0.5,$this->pos14["y"],$this->pos14["z"]+0.5);
+                        $this->pos15 = new Vector3($this->pos15["x"]+0.5,$this->pos15["y"],$this->pos15["z"]+0.5);
+                        $this->pos16 = new Vector3($this->pos16["x"]+0.5,$this->pos16["y"],$this->pos16["z"]+0.5);
+                        $this->pos17 = new Vector3($this->pos17["x"]+0.5,$this->pos17["y"],$this->pos17["z"]+0.5);
+                        $this->pos18 = new Vector3($this->pos18["x"]+0.5,$this->pos18["y"],$this->pos18["z"]+0.5);
+                        $this->pos19 = new Vector3($this->pos19["x"]+0.5,$this->pos19["y"],$this->pos19["z"]+0.5);
+                        $this->pos20 = new Vector3($this->pos20["x"]+0.5,$this->pos20["y"],$this->pos20["z"]+0.5);
+                        $this->pos21 = new Vector3($this->pos21["x"]+0.5,$this->pos21["y"],$this->pos21["z"]+0.5);
+                        $this->pos22 = new Vector3($this->pos22["x"]+0.5,$this->pos22["y"],$this->pos22["z"]+0.5);
+                        $this->pos23 = new Vector3($this->pos23["x"]+0.5,$this->pos23["y"],$this->pos23["z"]+0.5);
+                        $this->pos24 = new Vector3($this->pos24["x"]+0.5,$this->pos24["y"],$this->pos24["z"]+0.5);
+			$this->lastpos = new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
 		}
 		if(!$this->config->exists("endTime"))
 		{
@@ -129,15 +129,15 @@ class Main extends PluginBase implements Listener
 		{
 			$this->config->set("waitTime",180);
 		}
-		$this->endTime=(int)$this->config->get("endTime");
-		$this->gameTime=(int)$this->config->get("gameTime");
-		$this->waitTime=(int)$this->config->get("waitTime");
-		$this->prefix=(int)$this->config->get("prefix");
-		$this->gameStatus=0;
-		$this->lastTime=0;
-		$this->players=array();
-		$this->SetStatus=array();
-		$this->all=0;
+		$this->endTime = (int)$this->config->get("endTime");
+		$this->gameTime = (int)$this->config->get("gameTime");
+		$this->waitTime = (int)$this->config->get("waitTime");
+		$this->prefix = (int)$this->config->get("prefix");
+		$this->gameStatus = 0;
+		$this->lastTime = 0;
+		$this->players = array();
+		$this->SetStatus = array();
+		$this->all = 0;
 		$this->config->save();
 		if(!($this->money = $pm->getPlugin("EconomyAPI"))
         && !($this->money = $pm->getPlugin("PocketMoney")))			{
@@ -168,7 +168,7 @@ class Main extends PluginBase implements Listener
 				$sender->sendMessage(TextFormat::GREEN."Teleporting to lobby...");
 				$this->sendToAll(TextFormat::RED."Player ".$sender->getName()." left the match.");
 				$this->changeStatusSign();
-				if($this->gameStatus==1 && count($this->players)<2)
+				if($this->gameStatus == 1 && count($this->players)<2)
 				{
 					$this->gameStatus=0;
 					$this->lastTime=0;
@@ -268,60 +268,60 @@ class Main extends PluginBase implements Listener
 			$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 			if($this->config->exists("lastpos"))
 			{
-				$this->sign=$this->config->get("sign");
-				$this->pos1=$this->config->get("pos1");
-				$this->pos2=$this->config->get("pos2");
-				$this->pos3=$this->config->get("pos3");
-				$this->pos4=$this->config->get("pos4");
-				$this->pos5=$this->config->get("pos5");
-				$this->pos6=$this->config->get("pos6");
-				$this->pos7=$this->config->get("pos7");
-				$this->pos8=$this->config->get("pos8");
-				$this->pos9=$this->config->get("pos9");
-				$this->pos10=$this->config->get("pos10");
-			        $this->pos11=$this->config->get("pos11");
-			        $this->pos12=$this->config->get("pos12");
-			        $this->pos13=$this->config->get("pos13");
-			        $this->pos14=$this->config->get("pos14");
-			        $this->pos15=$this->config->get("pos15");
-			        $this->pos16=$this->config->get("pos16");
-			        $this->pos17=$this->config->get("pos17");
-			        $this->pos18=$this->config->get("pos18");
-			        $this->pos19=$this->config->get("pos19");
-		           	$this->pos20=$this->config->get("pos20");
-		        	$this->pos21=$this->config->get("pos21");
-		        	$this->pos22=$this->config->get("pos22");
-		        	$this->pos23=$this->config->get("pos23");
-			        $this->pos24=$this->config->get("pos24");				
-				$this->lastpos=$this->config->get("lastpos");
-				$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
-				$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
-				$this->sign=new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
-				$this->pos1=new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
-				$this->pos2=new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
-				$this->pos3=new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
-				$this->pos4=new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
-				$this->pos5=new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
-				$this->pos6=new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
-				$this->pos7=new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
-				$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
-				$this->pos9=new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
-				$this->pos10=new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
-				$this->pos11=new Vector3($this->pos11["x"]+0.5,$this->pos11["y"],$this->pos11["z"]+0.5);
-				$this->pos12=new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
-				$this->pos13=new Vector3($this->pos13["x"]+0.5,$this->pos13["y"],$this->pos13["z"]+0.5);
-				$this->pos14=new Vector3($this->pos14["x"]+0.5,$this->pos14["y"],$this->pos14["z"]+0.5);
-				$this->pos15=new Vector3($this->pos15["x"]+0.5,$this->pos15["y"],$this->pos15["z"]+0.5);
-				$this->pos16=new Vector3($this->pos16["x"]+0.5,$this->pos16["y"],$this->pos16["z"]+0.5);
-				$this->pos17=new Vector3($this->pos17["x"]+0.5,$this->pos17["y"],$this->pos17["z"]+0.5);
-				$this->pos18=new Vector3($this->pos18["x"]+0.5,$this->pos18["y"],$this->pos18["z"]+0.5);
-				$this->pos19=new Vector3($this->pos19["x"]+0.5,$this->pos19["y"],$this->pos19["z"]+0.5);
-				$this->pos20=new Vector3($this->pos20["x"]+0.5,$this->pos20["y"],$this->pos20["z"]+0.5);
-				$this->pos21=new Vector3($this->pos21["x"]+0.5,$this->pos21["y"],$this->pos21["z"]+0.5);
-				$this->pos22=new Vector3($this->pos22["x"]+0.5,$this->pos22["y"],$this->pos22["z"]+0.5);
-				$this->pos23=new Vector3($this->pos23["x"]+0.5,$this->pos23["y"],$this->pos23["z"]+0.5);
-				$this->pos24=new Vector3($this->pos24["x"]+0.5,$this->pos24["y"],$this->pos24["z"]+0.5);
-				$this->lastpos=new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
+				$this->sign = $this->config->get("sign");
+				$this->pos1 = $this->config->get("pos1");
+				$this->pos2 = $this->config->get("pos2");
+				$this->pos3 = $this->config->get("pos3");
+				$this->pos4 = $this->config->get("pos4");
+				$this->pos5 = $this->config->get("pos5");
+				$this->pos6 = $this->config->get("pos6");
+				$this->pos7 = $this->config->get("pos7");
+				$this->pos8 = $this->config->get("pos8");
+				$this->pos9 = $this->config->get("pos9");
+				$this->pos10 = $this->config->get("pos10");
+			        $this->pos11 = $this->config->get("pos11");
+			        $this->pos12 = $this->config->get("pos12");
+			        $this->pos13 = $this->config->get("pos13");
+			        $this->pos14 = $this->config->get("pos14");
+			        $this->pos15 = $this->config->get("pos15");
+			        $this->pos16 = $this->config->get("pos16");
+			        $this->pos17 = $this->config->get("pos17");
+			        $this->pos18 = $this->config->get("pos18");
+			        $this->pos19 = $this->config->get("pos19");
+		           	$this->pos20 = $this->config->get("pos20");
+		        	$this->pos21 = $this->config->get("pos21");
+		        	$this->pos22 = $this->config->get("pos22");
+		        	$this->pos23 = $this->config->get("pos23");
+			        $this->pos24 = $this->config->get("pos24");				
+				$this->lastpos = $this->config->get("lastpos");
+				$this->level = $this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
+				$this->signlevel = $this->getServer()->getLevelByName($this->config->get("sign")["level"]);
+				$this->sign = new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
+				$this->pos1 = new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
+				$this->pos2 = new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
+				$this->pos3 = new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
+				$this->pos4 = new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
+				$this->pos5 = new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
+				$this->pos6 = new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
+				$this->pos7 = new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
+				$this->pos8 = new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
+				$this->pos9 = new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
+				$this->pos10 = new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
+				$this->pos11 = new Vector3($this->pos11["x"]+0.5,$this->pos11["y"],$this->pos11["z"]+0.5);
+				$this->pos12 = new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
+				$this->pos13 = new Vector3($this->pos13["x"]+0.5,$this->pos13["y"],$this->pos13["z"]+0.5);
+				$this->pos14 = new Vector3($this->pos14["x"]+0.5,$this->pos14["y"],$this->pos14["z"]+0.5);
+				$this->pos15 = new Vector3($this->pos15["x"]+0.5,$this->pos15["y"],$this->pos15["z"]+0.5);
+				$this->pos16 = new Vector3($this->pos16["x"]+0.5,$this->pos16["y"],$this->pos16["z"]+0.5);
+				$this->pos17 = new Vector3($this->pos17["x"]+0.5,$this->pos17["y"],$this->pos17["z"]+0.5);
+				$this->pos18 = new Vector3($this->pos18["x"]+0.5,$this->pos18["y"],$this->pos18["z"]+0.5);
+				$this->pos19 = new Vector3($this->pos19["x"]+0.5,$this->pos19["y"],$this->pos19["z"]+0.5);
+				$this->pos20 = new Vector3($this->pos20["x"]+0.5,$this->pos20["y"],$this->pos20["z"]+0.5);
+				$this->pos21 = new Vector3($this->pos21["x"]+0.5,$this->pos21["y"],$this->pos21["z"]+0.5);
+				$this->pos22 = new Vector3($this->pos22["x"]+0.5,$this->pos22["y"],$this->pos22["z"]+0.5);
+				$this->pos23 = new Vector3($this->pos23["x"]+0.5,$this->pos23["y"],$this->pos23["z"]+0.5);
+				$this->pos24 = new Vector3($this->pos24["x"]+0.5,$this->pos24["y"],$this->pos24["z"]+0.5);
+				$this->lastpos = new Vector3($this->lastpos["x"]+0.5,$this->lastpos["y"],$this->lastpos["z"]+0.5);
 			}
 			if(!$this->config->exists("endTime"))
 			{
@@ -339,15 +339,15 @@ class Main extends PluginBase implements Listener
 			{
 				$this->config->set("waitTime",180);
 			}
-			$this->endTime=(int)$this->config->get("endTime");//游戏时间
-			$this->gameTime=(int)$this->config->get("gameTime");//游戏时间
-			$this->waitTime=(int)$this->config->get("waitTime");//等待时间
-			$this->prefix=(int)$this->config->get("prefix");//无敌时间
-			$this->gameStatus=0;//当前状态
-			$this->lastTime=0;//还没开始
-			$this->players=array();//加入游戏的玩家
-			$this->SetStatus=array();//设置状态
-			$this->all=0;//最大玩家数量
+			$this->endTime = (int)$this->config->get("endTime");
+			$this->gameTime = (int)$this->config->get("gameTime");
+			$this->waitTime = (int)$this->config->get("waitTime");
+			$this->prefix = (int)$this->config->get("prefix");
+			$this->gameStatus = 0;
+			$this->lastTime = 0;
+			$this->players = array();
+			$this->SetStatus = array();
+			$this->all = 0;
 			$this->config->save();
 			$sender->sendMessage("Config has been reloaded.");
 			break;
@@ -362,7 +362,7 @@ class Main extends PluginBase implements Listener
         $player = $event->getPlayer();
         if($this->config->exists("lastpos"))
         {
-			if($player->getLevel()->getServer()==$this->level->getFolderName())
+			if($player->getLevel()->getServer() == $this->level->getFolderName())
 			{
 				$v3=$this->signlevel->getSpawnLocation();
 				$event->setRespawnPosition(new Position($v3->x,$v3->y,$v3->z,$this->signlevel));
@@ -377,7 +377,7 @@ class Main extends PluginBase implements Listener
 		{
 			return;
 		}
-		$block=$event->getBlock();
+		$block = $event->getBlock();
 		if($this->PlayerIsInGame($event->getPlayer()->getName()) || $block->getLevel()==$this->level)
 		{
 			if(!$event->getPlayer()->isOp())
@@ -411,7 +411,7 @@ class Main extends PluginBase implements Listener
 		}
 		$sign=$this->config->get("sign");
 		$block=$event->getBlock();
-		if($this->PlayerIsInGame($event->getPlayer()->getName()) || ($block->getX()==$sign["x"] && $block->getY()==$sign["y"] && $block->getZ()==$sign["z"] && $block->getLevel()->getFolderName()==$sign["level"]) || $block->getLevel()==$this->level)
+		if($this->PlayerIsInGame($event->getPlayer()->getName()) || ($block->getX() == $sign["x"] && $block->getY() == $sign["y"] && $block->getZ() == $sign["z"] && $block->getLevel()->getFolderName() == $sign["level"]) || $block->getLevel() == $this->level)
 		{
 			if(!$event->getPlayer()->isOp())
 			{
@@ -423,7 +423,7 @@ class Main extends PluginBase implements Listener
 	
 	public function onPlayerCommand(PlayerCommandPreprocessEvent $event)
 	{
-		if(!$this->PlayerIsInGame($event->getPlayer()->getName()) || $event->getPlayer()->isOp() || substr($event->getMessage(),0,1)!="/")
+		if(!$this->PlayerIsInGame($event->getPlayer()->getName()) || $event->getPlayer()->isOp() || substr($event->getMessage(),0,1) != "/")
 		{
 			unset($event);
 			return;
@@ -452,7 +452,7 @@ class Main extends PluginBase implements Listener
         	$killer = $event->getDamager();
 			if($player instanceof Player && $killer instanceof Player)
 			{
-		    	if($this->PlayerIsInGame($player->getName()) && ($this->gameStatus==2 || $this->gameStatus==1))
+		    	if($this->PlayerIsInGame($player->getName()) && ($this->gameStatus == 2 || $this->gameStatus == 1))
 		    	{
 		    		$event->setCancelled();
 		    	}
@@ -474,16 +474,16 @@ class Main extends PluginBase implements Listener
 	}
 	
 	public function PlayerDeath(PlayerDeathEvent $event){
-		if($this->gameStatus==3 || $this->gameStatus==4)
+		if($this->gameStatus == 3 || $this->gameStatus == 4)
 		{
 			if(isset($this->players[$event->getEntity()->getName()]))
 			{
 				$this->ClearInv($event->getEntity());
 				unset($this->players[$event->getEntity()->getName()]);
-				if(count($this->players)>1)
+				if(count($this->players) > 1)
 				{
 					$this->sendToAll(" {$event->getEntity()->getName()} died.");
-				$this->sendToAll("Players: ".count($this->players));
+					$this->sendToAll("Players: ".count($this->players));
 					$this->sendToAll("Time remaining: ".$this->lastTime." seconds.");
 				}
 				$this->changeStatusSign();
@@ -571,41 +571,41 @@ class Main extends PluginBase implements Listener
 	}
 	
 	public function gameTimber(){
-		if(!isset($this->lastpos) || $this->lastpos==array())
+		if(!isset($this->lastpos) || $this->lastpos == array())
 		{
 			return;
 		}
 		if(!$this->signlevel instanceof Level)
 		{
-			$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
-			$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
+			$this->level = $this->getServer()->getLevelByName($this->config->get("pos1")["level"]);
+			$this->signlevel = $this->getServer()->getLevelByName($this->config->get("sign")["level"]);
 			if(!$this->signlevel instanceof Level)
 			{
 				return;
 			}
 		}
 		$this->changeStatusSign();
-		if($this->gameStatus==0)
+		if($this->gameStatus == 0)
 		{
-			$i=0;
-			foreach($this->players as $key=>$val)
+			$i = 0;
+			foreach($this->players as $key => $val)
 			{
 				$i++;
-				$p=$this->getServer()->getPlayer($val["id"]);
+				$p = $this->getServer()->getPlayer($val["id"]);
 				//echo($i."\n");
 				$p->setLevel($this->level);
 				eval("\$p->teleport(\$this->pos".$i.");");
 				unset($p);
 			}
 		}
-		if($this->gameStatus==1)
+		if($this->gameStatus == 1)
 		{
 			$this->lastTime--;
-			$i=0;
-			foreach($this->players as $key=>$val)
+			$i = 0;
+			foreach($this->players as $key => $val)
 			{
 				$i++;
-				$p=$this->getServer()->getPlayer($val["id"]);
+				$p = $this->getServer()->getPlayer($val["id"]);
 				//echo($i."\n");
 				$p->setLevel($this->level);
 				eval("\$p->teleport(\$this->pos".$i.");");
@@ -640,42 +640,42 @@ class Main extends PluginBase implements Listener
 				$this->sendToAll(TextFormat::YELLOW."The match will start in 2:30.");
 				break;
 			case 0:
-				$this->gameStatus=2;
+				$this->gameStatus = 2;
 				$this->sendToAll(TextFormat::YELLOW."The match has started. Good luck!");
 				$this->sendToAll(TextFormat::RED."Warning!".TextFormat::YELLOW."There is no grace period!");
 				$this->sendTip(TextFormat::GREEN."The match has started.");
-				$this->lastTime=$this->godTime;
+				$this->lastTime = $this->godTime;
 				$this->resetChest();
-				foreach($this->players as $key=>$val)
+				foreach($this->players as $key => $val)
 				{
 					$p=$this->getServer()->getPlayer($val["id"]);
 					$p->setMaxHealth(25);
 					$p->setHealth(25);
 					$p->setLevel($this->level);
 				}
-				$this->all=count($this->players);
+				$this->all = count($this->players);
 				break;
 			}
 		}
-		if($this->gameStatus==2)
+		if($this->gameStatus == 2)
 		{
 			$this->lastTime--;
-			if($this->lastTime<=0)
+			if($this->lastTime <= 0)
 			{
-				$this->gameStatus=3;
+				$this->gameStatus = 3;
 				$this->sendToAll(TextFormat::GREEN."Chests have been refilled!");
-				$this->lastTime=$this->gameTime;
+				$this->lastTime = $this->gameTime;
 				$this->resetChest();
 			}
 		}
-		if($this->gameStatus==3 || $this->gameStatus==4)
+		if($this->gameStatus == 3 || $this->gameStatus == 4)
 		{
-			if(count($this->players)==1)
+			if(count($this->players) == 1)
 			{
 				$this->sendToAll(TextFormat::GREEN."Congratulations! You have won the game.");
 				foreach($this->players as &$pl)
 				{
-					$p=$this->getServer()->getPlayer($pl["id"]);
+					$p = $this->getServer()->getPlayer($pl["id"]);
 					Server::getInstance()->broadcastMessage(TextFormat::GREEN."" .$p->getName(). " won an HG match!");
 					$p->setLevel($this->signlevel);
 					$p->getInventory()->clearAll();
@@ -685,22 +685,22 @@ class Main extends PluginBase implements Listener
 					unset($pl,$p);
 				}
 				$this->clearChest();
-				$this->players=array();
-				$this->gameStatus=0;
-				$this->lastTime=0;
+				$this->players = array();
+				$this->gameStatus = 0;
+				$this->lastTime = 0;
 				return;
 			}
-			else if(count($this->players)==0)
+			else if(count($this->players) == 0)
 			{
 				Server::getInstance()->broadcastMessage("The match has ended.");
-				$this->gameStatus=0;
-				$this->lastTime=0;
+				$this->gameStatus = 0;
+				$this->lastTime = 0;
 				$this->clearChest();
 				$this->ClearAllInv();
 				return;
 			}
 		}
-		if($this->gameStatus==3)
+		if($this->gameStatus == 3)
 		{
 			$this->lastTime--;
 			switch($this->lastTime)
@@ -719,17 +719,17 @@ class Main extends PluginBase implements Listener
 				$this->sendToAll(TextFormat::YELLOW."The deathmatch has started. May the best one win.");
 				foreach($this->players as $pl)
 				{
-					$p=$this->getServer()->getPlayer($pl["id"]);
+					$p = $this->getServer()->getPlayer($pl["id"]);
 					$p->setLevel($this->level);
 					$p->teleport($this->lastpos);
 					unset($p,$pl);
 				}
-				$this->gameStatus=4;
-				$this->lastTime=$this->endTime;
+				$this->gameStatus = 4;
+				$this->lastTime = $this->endTime;
 				break;
 			}
 		}
-		if($this->gameStatus==4)
+		if($this->gameStatus == 4)
 		{
 			$this->lastTime--;
 			switch($this->lastTime)
@@ -753,7 +753,7 @@ class Main extends PluginBase implements Listener
 				Server::getInstance()->broadcastMessage("The match has ended.");
 				foreach($this->players as $pl)
 				{
-					$p=$this->getServer()->getPlayer($pl["id"]);
+					$p = $this->getServer()->getPlayer($pl["id"]);
 					$p->setLevel($this->signlevel);
 					$p->teleport($this->signlevel->getSpawnLocation());
 					$p->getInventory()->clearAll();
@@ -763,9 +763,9 @@ class Main extends PluginBase implements Listener
 				}
 				$this->clearChest();
 				//$this->ClearAllInv();
-				$this->players=array();
-				$this->gameStatus=0;
-				$this->lastTime=0;
+				$this->players = array();
+				$this->gameStatus = 0;
+				$this->lastTime = 0;
 				break;
 			}
 		}
@@ -816,7 +816,7 @@ class Main extends PluginBase implements Listener
 		{
 			return;
 		}
-		$sign=$this->signlevel->getTile($this->sign);
+		$sign = $this->signlevel->getTile($this->sign);
 		if($sign instanceof Sign)
 		{
 			switch($this->gameStatus)
@@ -841,10 +841,10 @@ class Main extends PluginBase implements Listener
 		unset($sign);
 	}
 	public function playerBlockTouch(PlayerInteractEvent $event){
-		$player=$event->getPlayer();
-		$username=$player->getName();
-		$block=$event->getBlock();
-		$levelname=$player->getLevel()->getFolderName();
+		$player = $event->getPlayer();
+		$username = $player->getName();
+		$block = $event->getBlock();
+		$levelname = $player->getLevel()->getFolderName();
 		if(isset($this->SetStatus[$username]))
 		{
 			switch ($this->SetStatus[$username])
@@ -865,8 +865,8 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Sign for condition has been created.");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 1st spawnpoint.");
-				$this->signlevel=$this->getServer()->getLevelByName($this->config->get("sign")["level"]);
-				$this->sign=new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
+				$this->signlevel = $this->getServer()->getLevelByName($this->config->get("sign")["level"]);
+				$this->sign = new Vector3($this->sign["x"],$this->sign["y"],$this->sign["z"]);
 				$this->changeStatusSign();
 				break;
 			case 1:
@@ -880,7 +880,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 1 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 2nd spawnpoint.");
-				$this->pos1=new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
+				$this->pos1 = new Vector3($this->pos1["x"]+0.5,$this->pos1["y"],$this->pos1["z"]+0.5);
 				break;
 			case 2:
 				 $this->pos2=array(
@@ -893,7 +893,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 2 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 3rd spawnpoint.");
-				$this->pos2=new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
+				$this->pos2 = new Vector3($this->pos2["x"]+0.5,$this->pos2["y"],$this->pos2["z"]+0.5);
 				break;	
 			case 3:
 				$this->pos3=array(
@@ -906,7 +906,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 3 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 4th spawnpoint");
-				$this->pos3=new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
+				$this->pos3 = new Vector3($this->pos3["x"]+0.5,$this->pos3["y"],$this->pos3["z"]+0.5);
 				break;	
 			case 4:
 				$this->pos4=array(
@@ -919,7 +919,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 4 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 5th spawnpoint.");
-				$this->pos4=new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
+				$this->pos4 = new Vector3($this->pos4["x"]+0.5,$this->pos4["y"],$this->pos4["z"]+0.5);
 				break;
 			case 5:
 				$this->pos5=array(
@@ -932,7 +932,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 5 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 6th spawnpoint.");
-				$this->pos5=new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
+				$this->pos5 = new Vector3($this->pos5["x"]+0.5,$this->pos5["y"],$this->pos5["z"]+0.5);
 				break;
 			case 6:
 				$this->pos6=array(
@@ -945,7 +945,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 6 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 7th spawnpoint.");
-				$this->pos6=new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
+				$this->pos6 = new Vector3($this->pos6["x"]+0.5,$this->pos6["y"],$this->pos6["z"]+0.5);
 				break;
 			case 7:
 				$this->pos7=array(
@@ -958,7 +958,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 7 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 8th spawnpoint.");
-				$this->pos7=new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
+				$this->pos7 = new Vector3($this->pos7["x"]+0.5,$this->pos7["y"],$this->pos7["z"]+0.5);
 				break;	
 			case 8:
 				$this->pos8=array(
@@ -971,7 +971,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 8 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 9th spawnpoint.");
-				$this->pos8=new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
+				$this->pos8 = new Vector3($this->pos8["x"]+0.5,$this->pos8["y"],$this->pos8["z"]+0.5);
 				break;
 			case 9:
 				$this->pos9=array(
@@ -984,7 +984,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 9 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 10th spawnpoint.");
-				$this->pos9=new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
+				$this->pos9 = new Vector3($this->pos9["x"]+0.5,$this->pos9["y"],$this->pos9["z"]+0.5);
 				break;
 			case 10:
 				$this->pos10=array(
@@ -997,7 +997,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 10 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 11th spawnpoint.");
-				$this->pos10=new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
+				$this->pos10 = new Vector3($this->pos10["x"]+0.5,$this->pos10["y"],$this->pos10["z"]+0.5);
 				break;
 			case 11:
 				$this->pos11=array(
@@ -1010,7 +1010,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 11 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 12th spawnpoint.");
-				$this->pos11=new Vector3($this->pos11["x"]+0.5,$this->pos11["y"],$this->pos11["z"]+0.5);
+				$this->pos11 = new Vector3($this->pos11["x"]+0.5,$this->pos11["y"],$this->pos11["z"]+0.5);
 				break;
 			case 12:
 				$this->pos12=array(
@@ -1023,7 +1023,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 12 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 13th spawnpoint.");				
-				$this->pos12=new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
+				$this->pos12 = new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
 				break;
 			case 13:
 				$this->pos13=array(
@@ -1036,7 +1036,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 13 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 14th spawnpoint.");				
-				$this->pos13=new Vector3($this->pos13["x"]+0.5,$this->pos13["y"],$this->pos13["z"]+0.5);
+				$this->pos13 = new Vector3($this->pos13["x"]+0.5,$this->pos13["y"],$this->pos13["z"]+0.5);
 				break;
 			case 14:
 				$this->pos14=array(
@@ -1049,7 +1049,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 14 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 15th spawnpoint.");				
-				$this->pos14=new Vector3($this->pos14["x"]+0.5,$this->pos14["y"],$this->pos14["z"]+0.5);
+				$this->pos14 = new Vector3($this->pos14["x"]+0.5,$this->pos14["y"],$this->pos14["z"]+0.5);
 				break;
 			case 15:
 				$this->pos15=array(
@@ -1062,7 +1062,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 15 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 16th spawnpoint.");				
-				$this->pos15=new Vector3($this->pos15["x"]+0.5,$this->pos15["y"],$this->pos15["z"]+0.5);
+				$this->pos15 = new Vector3($this->pos15["x"]+0.5,$this->pos15["y"],$this->pos15["z"]+0.5);
 				break;
 			case 16:
 				$this->pos16=array(
@@ -1075,7 +1075,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 16 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 17th spawnpoint.");				
-				$this->pos16=new Vector3($this->pos16["x"]+0.5,$this->pos16["y"],$this->pos16["z"]+0.5);
+				$this->pos16 = new Vector3($this->pos16["x"]+0.5,$this->pos16["y"],$this->pos16["z"]+0.5);
 				break;
 			case 17:
 				$this->pos17=array(
@@ -1088,7 +1088,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 17 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 18th spawnpoint.");				
-				$this->pos17=new Vector3($this->pos17["x"]+0.5,$this->pos17["y"],$this->pos17["z"]+0.5);
+				$this->pos17 = new Vector3($this->pos17["x"]+0.5,$this->pos17["y"],$this->pos17["z"]+0.5);
 				break;
 			case 18:
 				$this->pos18=array(
@@ -1101,7 +1101,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 18 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 19th spawnpoint.");				
-				$this->pos18=new Vector3($this->pos18["x"]+0.5,$this->pos18["y"],$this->pos18["z"]+0.5);
+				$this->pos18 = new Vector3($this->pos18["x"]+0.5,$this->pos18["y"],$this->pos18["z"]+0.5);
 				break;
 			case 19:
 				$this->pos19=array(
@@ -1114,7 +1114,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 19 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 20th spawnpoint.");				
-				$this->pos19=new Vector3($this->pos19["x"]+0.5,$this->pos19["y"],$this->pos19["z"]+0.5);
+				$this->pos19 = new Vector3($this->pos19["x"]+0.5,$this->pos19["y"],$this->pos19["z"]+0.5);
 				break;
 			case 20:
 				$this->pos20=array(
@@ -1127,7 +1127,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 20 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 21st spawnpoint.");				
-				$this->pos20=new Vector3($this->pos20["x"]+0.5,$this->pos20["y"],$this->pos20["z"]+0.5);
+				$this->pos20 = new Vector3($this->pos20["x"]+0.5,$this->pos20["y"],$this->pos20["z"]+0.5);
 				break;
 			case 21:
 				$this->pos21=array(
@@ -1140,7 +1140,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 21 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 22nd spawnpoint.");				
-				$this->pos12=new Vector3($this->pos12["x"]+0.5,$this->pos12["y"],$this->pos12["z"]+0.5);
+				$this->pos21 = new Vector3($this->pos21["x"]+0.5,$this->pos21["y"],$this->pos21["z"]+0.5);
 				break;
 			case 22:
 				$this->pos22=array(
@@ -1153,7 +1153,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 22 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 23rd spawnpoint.");				
-				$this->pos22=new Vector3($this->pos22["x"]+0.5,$this->pos22["y"],$this->pos22["z"]+0.5);
+				$this->pos22 = new Vector3($this->pos22["x"]+0.5,$this->pos22["y"],$this->pos22["z"]+0.5);
 				break;
 			case 23:
 				$this->pos23=array(
@@ -1166,7 +1166,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 23 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the 24th spawnpoint.");				
-				$this->pos23=new Vector3($this->pos23["x"]+0.5,$this->pos23["y"],$this->pos23["z"]+0.5);
+				$this->pos23 = new Vector3($this->pos23["x"]+0.5,$this->pos23["y"],$this->pos23["z"]+0.5);
 				break;
 			case 24:
 				$this->pos24=array(
@@ -1179,7 +1179,7 @@ class Main extends PluginBase implements Listener
 				$this->SetStatus[$username]++;
 				$player->sendMessage(TextFormat::GREEN."Spawnpoint 24 created!");
 				$player->sendMessage(TextFormat::GREEN."Please click on the spawn for deathmatch.");				
-				$this->pos12=new Vector3($this->pos24["x"]+0.5,$this->pos24["y"],$this->pos24["z"]+0.5);
+				$this->pos12 = new Vector3($this->pos24["x"]+0.5,$this->pos24["y"],$this->pos24["z"]+0.5);
 				break;				
 			case 25:
 				$this->lastpos=array(
@@ -1193,7 +1193,7 @@ class Main extends PluginBase implements Listener
 				unset($this->SetStatus[$username]);
 				$player->sendMessage(TextFormat::GREEN."Deathmatch spawnpoint created!");
 				$player->sendMessage(TextFormat::GREEN."All settings completed and you can start a game now.");
-				$this->level=$this->getServer()->getLevelByName($this->config->get("pos1")["level"]);					
+				$this->level = $this->getServer()->getLevelByName($this->config->get("pos1")["level"]);					
 			}
 		}
 		else
@@ -1214,9 +1214,9 @@ class Main extends PluginBase implements Listener
 				if(!$event->getPlayer()->isOp())
 				{
 					$inv=$event->getPlayer()->getInventory();
-					for($i=0;$i<$inv->getSize();$i++)
+					for($i = 0; $i < $inv->getSize(); $i++)
     				{
-    					if($inv->getItem($i)->getID()!=0)
+    					if($inv->getItem($i)->getID() != 0)
     					{
     						$event->getPlayer()->sendMessage("Remove all items from your inventory to join match.");
     						return;
@@ -1224,18 +1224,18 @@ class Main extends PluginBase implements Listener
     				}
     				foreach($inv->getArmorContents() as $i)
     				{
-    					if($i->getID()!=0)
+    					if($i->getID() != 0)
     					{
     						$event->getPlayer()->sendMessage("Please take your armor off.");
     						return;
     					}
     				}
     			}
-				if($this->gameStatus==0 || $this->gameStatus==1)
+				if($this->gameStatus == 0 || $this->gameStatus == 1)
 				{
 					if(!isset($this->players[$event->getPlayer()->getName()]))
 					{
-						if(count($this->players)>=6)
+						if(count($this->players) >= 6)
 						{
 							$event->getPlayer()->sendMessage("The match is full.");
 							return;
@@ -1243,16 +1243,16 @@ class Main extends PluginBase implements Listener
 						$this->sendToAll("" .$event->getPlayer()->getName(). " joined the match.");
 						$this->players[$event->getPlayer()->getName()]=array("id"=>$event->getPlayer()->getName());
 						$event->getPlayer()->sendMessage("You have joined the match!");
-						if($this->gameStatus==0 && count($this->players)>=2)
+						if($this->gameStatus == 0 && count($this->players) >= 2)
 						{
-							$this->gameStatus=1;
-							$this->lastTime=$this->waitTime;
+							$this->gameStatus = 1;
+							$this->lastTime = $this->waitTime;
 							$this->sendToAll("The game will countdown when a low amount of players are in");
 						}
-						if(count($this->players)==8 && $this->gameStatus==1 && $this->lastTime>5)
+						if(count($this->players) == 8 && $this->gameStatus == 1 && $this->lastTime > 5)
 						{
 							$this->sendToAll("The match is already full. Starting the match.");
-							$this->lastTime=5;
+							$this->lastTime = 5;
 						}
 						$this->changeStatusSign();
 					}
@@ -1290,7 +1290,7 @@ class Main extends PluginBase implements Listener
 	{
 		foreach($this->players as $pl)
 		{
-			$player=$this->getServer()->getPlayer($pl["id"]);
+			$player = $this->getServer()->getPlayer($pl["id"]);
 			if(!$player instanceof Player)
 			{
 				continue;
@@ -1307,10 +1307,10 @@ class Main extends PluginBase implements Listener
 			$this->ClearInv($event->getPlayer());
 			$this->sendToAll("".$event->getPlayer()->getName()." left the match.");
 			$this->changeStatusSign();
-			if($this->gameStatus==1 && count($this->players)<2)
+			if($this->gameStatus == 1 && count($this->players) < 2)
 			{
-				$this->gameStatus=0;
-				$this->lastTime=0;
+				$this->gameStatus = 0;
+				$this->lastTime = 0;
 				$this->sendToAll("There aren't enough players. Countdown has stopped.");
 				/*foreach($this->players as $pl)
 				{
@@ -1324,7 +1324,7 @@ class Main extends PluginBase implements Listener
 	}
 	
 	public function onDisable(){
-		
+		// Soon
 	}
 }
 ?>
